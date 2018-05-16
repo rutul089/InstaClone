@@ -13,27 +13,13 @@ class HomeTab extends Component {
 
 
     componentDidMount() {
-        // var authOptions = {
-        //     method: 'GET',
-        //     url: 'https://montanaflynn-lorem-text-generator.p.mashape.com/paragraph?count=1&length=3',
-        //     data: qs.stringify(data),
-        //     headers: {
-        //         "X-Mashape-Key": "",
-        //         "X-Mashape-Host": "montanaflynn-lorem-text-generator.p.mashape.com"
-        //     },
-        //     json: true
-        // };
 
-        // Axios with Headers
-        // axios.get('https://montanaflynn-lorem-text-generator.p.mashape.com/paragraph',{headers: {
-        //     "X-Mashape-Key": "EF6oRTjQW1mshk7HIYRZmDh3K0kPp1yYaE3jsnKOIsPC6cTNoB",
-        //     "X-Mashape-Host": "montanaflynn-lorem-text-generator.p.mashape.com"
-        // }})        
-        // .then(response=> console.log("Data:"+response));
-
-        var postData = {
-            'grant_type': "client_credentials"
-        }
+        //AXIOS with UserData, Header
+        //---Start
+        //UserData
+        const params = new URLSearchParams();
+        params.append('grant_type', 'client_credentials');
+        //Header
         let axiosConfig = {
             headers: {
                 'Accept': 'application/json',
@@ -42,14 +28,12 @@ class HomeTab extends Component {
                 'Authorization': 'Basic QVpQNDlZNWk1ZmEteW5nZUgtQWM4WVZwZ1dkXzM3SnZ1UnhkN2lxOUdiYkVkcXBSZGE4Rk9hNC1OZWs3NzdmRzdWMFNDOExDMjg3SjZpZVc6RUJyaHRRVkpNMFd5YWxjbHVSZFJRVHRQaVVzNDlpMy1SYU9OcVJuZnE4OW1OV0hlaFU2Z211dTV0TlJsc0tPcEJxdDhQX3FHR3NMRTdxZnA='
             }
         };
-        const params = new URLSearchParams();
-        params.append('grant_type', 'client_credentials');
-
-        console.log("11111111111111111");
+        //Passing Userdata and Header using AXIOS
         axios.post('https://api.sandbox.paypal.com/v1/oauth2/token', params, axiosConfig)
             .then(response => {
                 console.log("Data:\n\n--------------------Start\n\n" + JSON.stringify(response.data) + "\n\n----------------------End")
             });
+        //---End
 
         axios.get('https://randomuser.me/api/?results=10')
             .then(response =>
